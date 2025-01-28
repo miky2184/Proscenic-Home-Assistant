@@ -12,8 +12,8 @@ from homeassistant.helpers.entity_registry import (
 )
 import voluptuous as vol
 
-from .const import DOMAIN
-from .proscenicapis import *
+from const import DOMAIN
+from proscenicapis import *
 
 _LOGGER = logging.getLogger(__name__)
 

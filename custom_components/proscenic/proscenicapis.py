@@ -2,7 +2,7 @@ from time import sleep
 import io
 import aiohttp
 import asyncio
-
+import logging
 import base64
 
 from Crypto.Cipher import AES
@@ -15,11 +15,11 @@ from threading import Thread
 
 from PIL import Image, ImageDraw
 
-from ._block import decompress as lz4_decompress
+#from ._block import decompress as lz4_decompress
 
 #import lz4.block
 #lz4_decompress = lz4.block.decompress
-
+_LOGGER = logging.getLogger(__name__)
 US_HOST_PATH = 'mobile.proscenic.tw'
 EU_HOST_PATH = 'mobile.proscenic.com.de'
 CN_HOST_PATH = 'mobile.proscenic.cn'
@@ -531,6 +531,8 @@ class ProscenicHomeVacuum:
 
     def draw_map(self):
 
+        return self.map_bytes
+
         if not self.update_map and not self.update_robot_map:
             return self.map_bytes
 
@@ -541,7 +543,7 @@ class ProscenicHomeVacuum:
             clean_map_string = map_string.replace(" ", "+")
             decoder = base64.b64decode
             zipped_data = decoder(clean_map_string)
-            decompressed = lz4_decompress(zipped_data, (map_dimensions[0] * map_dimensions[1]))
+            decompressed = None #lz4_decompress(zipped_data, (map_dimensions[0] * map_dimensions[1]))
 
             self.pil_map_image = Image.frombytes("L", map_dimensions, decompressed)
             self.pil_map_image = self.pil_map_image.convert("RGBA")

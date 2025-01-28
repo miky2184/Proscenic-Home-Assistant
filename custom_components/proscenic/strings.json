@@ -10,7 +10,7 @@
           "username": "Username",
           "password": "Password"
         },
-        "description": "Enter your Procenic username (usally email) and password",
+        "description": "Enter your Procenic username (usually email) and password",
         "title": "Authentication"
       }
     }

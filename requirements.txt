@@ -1,0 +1,4 @@
+homeassistant==2023.7.2
+lz4==4.3.2
+pycryptodome==3.21.0
+pillow
